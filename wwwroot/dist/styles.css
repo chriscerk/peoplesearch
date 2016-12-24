@@ -1,0 +1,21 @@
+body h1 {
+  color: #006e9a; }
+
+body .navbar {
+  background-color: #006e9a;
+  border: none; }
+  body .navbar a {
+    color: white; }
+  body .navbar li.active {
+    background-color: #ff9600;
+    font-weight: 700; }
+  body .navbar li:hover, body .navbar a:hover {
+    background-color: #00aeef; }
+
+body td:hover {
+  background-color: antiquewhite; }
+
+body .hot-color {
+  background-color: #ff9600; }
+
+/*# sourceMappingURL=main.map*/

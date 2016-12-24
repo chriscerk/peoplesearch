@@ -1,0 +1,36 @@
+$primary-color: #006e9a;
+$secondary-color: #00aeef;
+$hot-color: #ff9600;
+$hot-color-dimmed: antiquewhite;
+
+body {
+    h1 {
+        color: $primary-color;
+    }
+
+    .navbar {
+        background-color: $primary-color;
+        border: none;
+
+        a {
+            color: white;
+        }
+
+        li.active {
+            background-color: $hot-color;
+            font-weight: 700;
+        }
+
+        li:hover, a:hover {
+            background-color: $secondary-color;
+        }
+    }
+
+    td:hover {
+        background-color: $hot-color-dimmed;
+    }
+
+    .hot-color {
+        background-color: $hot-color;
+    }
+}
