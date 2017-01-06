@@ -1,0 +1,42 @@
+<div class="pull-right displayControl">
+    <span (click)="displayToTable()" [style.color]="tableIconColor" class="glyphicon glyphicon-list"></span>
+    <span (click)="displayToCard()" [style.color]="cardIconColor" class="glyphicon glyphicon-th-large"></span>
+</div>
+
+<div class="input-group input-group-lg input-users">
+    <input class="form-control input-lg"
+           [(ngModel)]="searchTerm"
+           (keyup.enter)="filterChanged()"
+           id="users-search" type="text"
+           placeholder="Search for users..."/>
+
+    <span class="input-group-btn">
+        <button (click)="filterChanged()" class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+        </button>
+    </span>
+</div>
+<br/>
+<span *ngIf="!isLoading">{{searchedUsers.length}} results</span> 
+<span *ngIf="isLoading">Loading...</span>
+
+<table class="table" *ngIf="users">
+    <thead class={{displayMode}}>
+    <tr>
+        <th></th>
+        <th>Username</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Cell</th>
+        <th>Address</th>
+    </tr>
+    </thead>
+    <tbody>
+    <user [user]="user"
+            [format]="displayMode"
+            class={{displayMode}}
+            *ngFor="let user of searchedUsers">
+    </user>
+    </tbody>
+</table>
+

@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-    message = 'Currently in Development.';
+    message = 'ASP.NET MVC Application for 2017 Health Catalyst Interview Process';
 }

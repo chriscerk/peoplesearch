@@ -1,17 +1,42 @@
-<div class="table" *ngIf="people">
-    <table class="table table-striped table-hover">
-        <thead>
+<div class="pull-right displayControl">
+    <span (click)="displayToTable()" [style.color]="tableIconColor" class="glyphicon glyphicon-list"></span>
+</div>
+
+<div class="input-group input-group-lg input-people">
+    <input class="form-control input-lg"
+           [(ngModel)]="searchTerm"
+           (keyup)="filterChanged()"
+           (keyup.enter)="filterChanged()"
+           id="people-search" type="text"
+           placeholder="Search for people..."/>
+
+    <span class="input-group-btn">
+        <button (click)="filterChanged()" class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+        </button>
+    </span>
+</div>
+<br/>
+<p>{{searchedPeople.length}} results</p>
+<table class="table" *ngIf="people">
+    <thead class={{displayMode}}>
         <tr>
             <th>First Name</th>
             <th>Last Name</th>
             <th>User Name </th>
             <th>Phone Number</th>
         </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let person of people">
-                <person [person]="person"></person>
-            </tr>
-        </tbody>
+    </thead>
+    <tbody>
+    <person [person]="person"
+            [format]="displayMode"
+            class={{displayMode}}
+            *ngFor="let person of searchedPeople">
+    </person>
+    </tbody>
 </table>
-</div>
+
+<button class="btn btn-success btn-lg addPerson">
+    <span class="glyphicon glyphicon-plus"></span> Add Person
+</button>
+

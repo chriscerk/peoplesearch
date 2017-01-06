@@ -16,7 +16,7 @@ body {
             color: white;
         }
 
-        li.active {
+        li.active, li:active, a:active, a.active {
             background-color: $hot-color;
             font-weight: 700;
         }
@@ -26,11 +26,8 @@ body {
         }
     }
 
-    td:hover {
-        background-color: $hot-color-dimmed;
-    }
-
     .hot-color {
         background-color: $hot-color;
     }
+
 }

@@ -1,8 +1,19 @@
-﻿td {
-    font-size: 18px;
-    margin: 10px;
+﻿.input-people {
+    float: none;
+    width: 400px;
 }
 
-td:hover {
-    background-color: antiquewhite;
+thead.cardView {
+    display: none;
+}
+
+.displayControl {
+    font-size: 40px;
+}
+
+.addPerson {
+    position:absolute;
+    bottom: 30px;
+    left: 50px;
+    box-shadow: 0 0 15px rgb(111, 111, 111);
 }

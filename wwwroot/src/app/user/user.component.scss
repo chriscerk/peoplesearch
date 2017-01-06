@@ -1,0 +1,66 @@
+﻿:host.tableView:nth-child(odd) {
+    background-color: white;
+}
+
+:host.tableView:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+:host.tableView {
+    display: table-row;
+
+    span {
+        display:table-cell;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    img#lgUserPicture {
+        display:none;
+    }
+}
+
+:host.tableView:hover {
+    background-color:rgba(250, 235, 215, 0.3);
+}
+
+span.tableView:hover {
+    background-color: antiquewhite;
+}
+
+:host.cardView {
+    width: 128px;
+    height: 178px;
+    background-color: black;
+    box-shadow: 0 0 15px rgb(111, 111, 111);
+    display: inline-block;
+    margin: 20px;
+    overflow: hidden;
+    border-radius: 5px;
+    position: relative;
+
+    img#UserThumbnail {
+        display:none;
+    }
+
+    #name {
+        background-color: #006e9a;
+        color: white;
+        width:100%;
+        display: inline-block;
+        height: 50px;
+        position: absolute;
+        bottom: 0;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    #phoneNumber, #userName {
+        display:none;
+    }
+}
+
+:host.cardView:hover {
+    box-shadow: 0 0 50px rgb(111, 111, 111);
+}
+

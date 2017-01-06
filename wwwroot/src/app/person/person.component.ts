@@ -10,11 +10,11 @@ import { PeopleApiService } from '../core/services/people.service';
 })
 export class PersonComponent {
     @Input() person: IPerson;
+    @Input() format: string;
 
     constructor(private peopleApiService: PeopleApiService) { }
 
     ngOnInit() {
-
         if (this.person == null)
         {
             this.peopleApiService.getPersonById(this.person.id)

@@ -9,6 +9,8 @@ import { HomeComponent } from './home';
 import { AboutComponent } from './about';
 import { PeopleComponent } from './people';
 import { PersonComponent } from './person';
+import { UsersComponent } from './users';
+import { UserComponent } from './user';
 
 import '../styles.scss';
 
@@ -18,7 +20,9 @@ import '../styles.scss';
         HomeComponent,
         AboutComponent,
         PeopleComponent,
-        PersonComponent
+        PersonComponent,
+        UsersComponent,
+        UserComponent
     ],
     imports: [
         UniversalModule,

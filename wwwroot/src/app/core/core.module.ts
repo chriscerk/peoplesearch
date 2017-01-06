@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { EnsureModuleLoadedOnceGuard } from '../shared/ensureModuleLoadedOnceGuard';
 import { PeopleApiService } from './services/people.service';
+import { RandomUserApiService } from './services/randomUser.service';
 
 @NgModule({
     imports: [CommonModule],
     exports: [CommonModule],
-    providers: [PeopleApiService]
+    providers: [PeopleApiService, RandomUserApiService]
 })
 export class CoreModule extends EnsureModuleLoadedOnceGuard {
 
