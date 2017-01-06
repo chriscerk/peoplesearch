@@ -12,7 +12,15 @@ describe('HomeComponent', () => {
         ]
     }));
 
-    it('should have a message', inject([HomeComponent], (home: HomeComponent) => {
-        expect(home.message).toEqual('Currently In Development');
+    it('should have message', inject([HomeComponent], (home: HomeComponent) => {
+        expect(home.message).toEqual('ASP.NET MVC Application for 2017 Health Catalyst Interview Process');
+    }));
+
+    it('should have page title', inject([HomeComponent], (home: HomeComponent) => {
+        expect(home.pageTitle).toEqual('People Search');
+    }));
+
+    it('should have Github Link', inject([HomeComponent], (home: HomeComponent) => {
+        expect(home.githubLink).toEqual('https://github.com/chriscerk/peoplesearch');
     }));
 });

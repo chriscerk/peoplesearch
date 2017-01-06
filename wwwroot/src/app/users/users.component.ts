@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, AfterViewInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 
 import { IUser, IRandomUsersResponse } from '../shared/interfaces';
 import { RandomUserApiService } from '../core/services/randomUser.service';
@@ -29,21 +29,19 @@ export class UsersComponent implements OnInit {
                 this.users = response.results;
             });
 
-        this.displayMode = "tableView";
-        this.tableIconColor = "orange";
-        this.cardIconColor = "black";
+        this.displayToTable();
     }
 
     displayToTable() {
-        this.displayMode = "tableView";
-        this.tableIconColor = "orange";
-        this.cardIconColor = "black";
+        this.displayMode = 'tableView';
+        this.tableIconColor = 'orange';
+        this.cardIconColor = 'black';
     }
 
     displayToCard() {
-        this.displayMode = "cardView";
-        this.tableIconColor = "black";
-        this.cardIconColor = "orange";
+        this.displayMode = 'cardView';
+        this.tableIconColor = 'black';
+        this.cardIconColor = 'orange';
     }
 
     filterChanged() {

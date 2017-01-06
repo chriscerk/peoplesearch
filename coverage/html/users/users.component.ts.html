@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for users\users.component.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">users/</a> users.component.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">28.95% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>11/38</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">12.5% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">28.57% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>10/35</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span></td><td class="text"><pre class="prettyprint lang-js">﻿import { Component, OnInit } from '@angular/core';
+&nbsp;
+import { IUser, IRandomUsersResponse } from '../shared/interfaces';
+import { RandomUserApiService } from '../core/services/randomUser.service';
+&nbsp;
+&nbsp;
+@Component({
+    selector: 'users-search',
+    templateUrl: './users.component.html',
+    styleUrls: ['./users.component.scss']
+})
+export class UsersComponent implements OnInit {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    users: IUser[] = [];</span>
+<span class="cstat-no" title="statement not covered" >    searchedUsers: IUser[] = [];</span>
+    searchTerm: string;
+    displayMode: string;
+    tableIconColor: string;
+    cardIconColor: string;
+    isLoading: boolean;
+&nbsp;
+<span class="fstat-no" title="function not covered" >    constructor(private <span class="cstat-no" title="statement not covered" >randomUserApiService: RandomUserApiService)</span></span> {}
+&nbsp;
+<span class="fstat-no" title="function not covered" >    ngOnInit() {</span>
+<span class="cstat-no" title="statement not covered" >        this.isLoading = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.randomUserApiService.getRandomUsers(5000)</span>
+            .subscribe(<span class="fstat-no" title="function not covered" >(response: IRandomUsersResponse)</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >                this.users = response.results;</span>
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.displayToTable();</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    displayToTable() {</span>
+<span class="cstat-no" title="statement not covered" >        this.displayMode = 'tableView';</span>
+<span class="cstat-no" title="statement not covered" >        this.tableIconColor = 'orange';</span>
+<span class="cstat-no" title="statement not covered" >        this.cardIconColor = 'black';</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    displayToCard() {</span>
+<span class="cstat-no" title="statement not covered" >        this.displayMode = 'cardView';</span>
+<span class="cstat-no" title="statement not covered" >        this.tableIconColor = 'black';</span>
+<span class="cstat-no" title="statement not covered" >        this.cardIconColor = 'orange';</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    filterChanged() {</span>
+<span class="cstat-no" title="statement not covered" >        this.isLoading = true;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (this.searchTerm &amp;&amp; this.users) {</span>
+<span class="cstat-no" title="statement not covered" >            let props = ['first', 'last'];</span>
+<span class="cstat-no" title="statement not covered" >            let filtered = this.users.filter(<span class="fstat-no" title="function not covered" >u </span>=&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                let match = false;</span>
+<span class="cstat-no" title="statement not covered" >                for (<span class="cstat-no" title="statement not covered" >let prop </span>of props) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (u.name[prop].toString().toLowerCase().indexOf(this.searchTerm.toLowerCase()) &gt; -1) {</span>
+<span class="cstat-no" title="statement not covered" >                        match = true;</span>
+<span class="cstat-no" title="statement not covered" >                        break;</span>
+                    }
+                };
+<span class="cstat-no" title="statement not covered" >                return match;</span>
+            });
+<span class="cstat-no" title="statement not covered" >            this.searchedUsers = filtered;</span>
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            this.searchedUsers = this.users;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.isLoading = false;</span>
+    }
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jan 06 2017 12:58:00 GMT-0500 (Eastern Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

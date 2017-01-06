@@ -1,6 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { IUser, IRandomUsersResponse } from '../../shared/interfaces';
+import { IRandomUsersResponse } from '../../shared/interfaces';
 
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';

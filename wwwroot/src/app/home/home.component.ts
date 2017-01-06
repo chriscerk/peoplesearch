@@ -5,5 +5,7 @@ import { Component } from '@angular/core';
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+    pageTitle = "People Search";
     message = 'ASP.NET MVC Application for 2017 Health Catalyst Interview Process';
+    githubLink = 'https://github.com/chriscerk/peoplesearch';
 }
