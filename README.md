@@ -8,12 +8,12 @@ ASP.NET MVC Application for 2017 Health Catalyst Interview Process
 1. Search input in a text box for any part of their first or last name. - **Complete**
 2. Displays a pleasing style a list of people - **Table/Card view for "Users" and table cell/row highlighting**
 3. Seed data from (such as http://api.randomuser.me/) or provide a way to enter new users or both - **Both**
-4. Simulate search being slow and have the UI gracefully handle the delay - **Spinner should appear in "Users" when searching 'a'**
+4. Slow search is handled gracefully by UI - **Spinner in "Users" when searching 'a'**
 
 ### Technical Requirements
 1. An ASP.NET MVC Application - **Complete (Person Model, Angular 2 View, PeopleController)**
 2. Use Ajax to respond to search request - **```cd peoplesearch/wwwroot/src/app/core/services``` ('@angular/http' uses Ajax)**
-3. JavaScript unit tests - **Jasmine ```npm test``` **
+3. JavaScript unit tests - **Jasmine ```npm test```**
 
 
 ## Steps:
@@ -40,4 +40,4 @@ ASP.NET MVC Application for 2017 Health Catalyst Interview Process
 2. ```npm test```
 
 ## Note:
-Generated with https://github.com/sgbj/generator-aspnetcore-angular2
+Base Project generated with https://github.com/sgbj/generator-aspnetcore-angular2
