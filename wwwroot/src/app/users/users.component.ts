@@ -14,17 +14,18 @@ export class UsersComponent implements OnInit {
     users: IUser[] = [];
     searchedUsers: IUser[] = [];
     searchTerm: string;
+    totalUsers = 5000;
+
     displayMode: string;
     tableIconColor: string;
     cardIconColor: string;
+
     isLoading: boolean;
 
     constructor(private randomUserApiService: RandomUserApiService) {}
 
     ngOnInit() {
-        this.isLoading = false;
-
-        this.randomUserApiService.getRandomUsers(5000)
+        this.randomUserApiService.getRandomUsers(this.totalUsers)
             .subscribe((response: IRandomUsersResponse) => {
                 this.users = response.results;
             });

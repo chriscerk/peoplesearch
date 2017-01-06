@@ -1,34 +1,27 @@
 <div class="jumbotron">
     <div class="container">
         <h1>About</h1>
-        <p>This is an MVC ASP.NET Core application using Angular 2 for the View. Both implementations use services to call an API and return a response as an interface.</p>
-        <strong>Tools Used</strong>
-        <ul>
-            <li>Microsoft's Typescript for Angular 2</li>
-            <li>Jasmine Tests</li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-        <h2>Features</h2>
-        <ul>
-            
-        </ul>
+        <p>This is an MVC ASP.NET Core application using Angular 2 for the View. Both implementations (People & User) use services to call an API and return a response as an interface.</p>
         
         <h2>People</h2>
-        <span>The People search calls the PeopleController which uses the ExamplePeopleList to propagate the PeopleRepository. The list is  </span>
-        <h4>Features</h4>
-        <ul>
-            <li>Instant search upon keyup due to small size of data.</li>
-        </ul>
+        <span>The People search calls the PeopleController which uses the ExamplePeopleList to propagate the PeopleRepository.</span>
 
         <h2>Users</h2>
-        <span>The Users search uses the RandomUser.me API to grab 5000 example users to search upon. The input box is left </span>
-        <h4>Features</h4>
+        <span>The Users search uses the RandomUser.me API to grab 5000 example users to search upon.</span>
+        
+        <h3>Features</h3>
         <ul>
-            <li>View Users in a table with all information or by picture with name.</li>
+            <li>Two views for "Users": Table and Card. Table view for efficiency and Card if an individual needed to distiguish a user by their picture.</li>
+            <li>Cell & Row highlighting for user focus & feedback.</li>
+            <li>Immediate search in "People" due to small data size.</li>
         </ul>
 
+        <h3>'Tools' Used</h3>
+        <ul>
+            <li>Microsoft's Typescript</li>
+            <li>Jasmine for Testing</li>
+            <li>SASS for styling</li>
+        </ul>
+        
     </div>
 </div>

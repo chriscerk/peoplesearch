@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "aab1e3163c2ff1a5a056"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b9384339216153a97e70"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotMainModule = true; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -1802,11 +1802,11 @@ var UsersComponent = (function () {
         this.randomUserApiService = randomUserApiService;
         this.users = [];
         this.searchedUsers = [];
+        this.totalUsers = 5000;
     }
     UsersComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.isLoading = false;
-        this.randomUserApiService.getRandomUsers(5000)
+        this.randomUserApiService.getRandomUsers(this.totalUsers)
             .subscribe(function (response) {
             _this.users = response.results;
         });
@@ -2390,7 +2390,7 @@ module.exports = XmlEntities;
 /* 36 */
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"jumbotron\">\r\n    <div class=\"container\">\r\n        <h1>About</h1>\r\n        <p>This is an MVC ASP.NET Core application using Angular 2 for the View. Both implementations use services to call an API and return a response as an interface.</p>\r\n        <strong>Tools Used</strong>\r\n        <ul>\r\n            <li>Microsoft's Typescript for Angular 2</li>\r\n            <li>Jasmine Tests</li>\r\n            <li></li>\r\n            <li></li>\r\n            <li></li>\r\n            <li></li>\r\n        </ul>\r\n        <h2>Features</h2>\r\n        <ul>\r\n            \r\n        </ul>\r\n        \r\n        <h2>People</h2>\r\n        <span>The People search calls the PeopleController which uses the ExamplePeopleList to propagate the PeopleRepository. The list is  </span>\r\n        <h4>Features</h4>\r\n        <ul>\r\n            <li>Instant search upon keyup due to small size of data.</li>\r\n        </ul>\r\n\r\n        <h2>Users</h2>\r\n        <span>The Users search uses the RandomUser.me API to grab 5000 example users to search upon. The input box is left </span>\r\n        <h4>Features</h4>\r\n        <ul>\r\n            <li>View Users in a table with all information or by picture with name.</li>\r\n        </ul>\r\n\r\n    </div>\r\n</div>";
+module.exports = "<div class=\"jumbotron\">\r\n    <div class=\"container\">\r\n        <h1>About</h1>\r\n        <p>This is an MVC ASP.NET Core application using Angular 2 for the View. Both implementations (People & User) use services to call an API and return a response as an interface.</p>\r\n        \r\n        <h2>People</h2>\r\n        <span>The People search calls the PeopleController which uses the ExamplePeopleList to propagate the PeopleRepository.</span>\r\n\r\n        <h2>Users</h2>\r\n        <span>The Users search uses the RandomUser.me API to grab 5000 example users to search upon.</span>\r\n        \r\n        <h3>Features</h3>\r\n        <ul>\r\n            <li>Two views for \"Users\": Table and Card. Table view for efficiency and Card if an individual needed to distiguish a user by their picture.</li>\r\n            <li>Cell & Row highlighting for user focus & feedback.</li>\r\n            <li>Immediate search in \"People\" due to small data size.</li>\r\n        </ul>\r\n\r\n        <h3>'Tools' Used</h3>\r\n        <ul>\r\n            <li>Microsoft's Typescript</li>\r\n            <li>Jasmine for Testing</li>\r\n            <li>SASS for styling</li>\r\n        </ul>\r\n        \r\n    </div>\r\n</div>";
 
 /***/ },
 /* 37 */
@@ -2426,7 +2426,7 @@ module.exports = "<img class={{format}} id=\"lgUserPicture\" src=\"{{user.pictur
 /* 42 */
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"pull-right displayControl\">\r\n    <span (click)=\"displayToTable()\" [style.color]=\"tableIconColor\" class=\"glyphicon glyphicon-list\"></span>\r\n    <span (click)=\"displayToCard()\" [style.color]=\"cardIconColor\" class=\"glyphicon glyphicon-th-large\"></span>\r\n</div>\r\n\r\n<div class=\"input-group input-group-lg input-users\">\r\n    <input class=\"form-control input-lg\"\r\n           [(ngModel)]=\"searchTerm\"\r\n           (keyup.enter)=\"filterChanged()\"\r\n           id=\"users-search\" type=\"text\"\r\n           placeholder=\"Search for users...\"/>\r\n\r\n    <span class=\"input-group-btn\">\r\n        <button (click)=\"filterChanged()\" class=\"btn btn-default\" type=\"button\">\r\n            <span class=\"glyphicon glyphicon-search\"></span>\r\n        </button>\r\n    </span>\r\n</div>\r\n<br/>\r\n<span *ngIf=\"!isLoading\">{{searchedUsers.length}} results</span> \r\n<span *ngIf=\"isLoading\">Loading...</span>\r\n\r\n<table class=\"table\" *ngIf=\"users\">\r\n    <thead class={{displayMode}}>\r\n    <tr>\r\n        <th></th>\r\n        <th>Username</th>\r\n        <th>Name</th>\r\n        <th>Email</th>\r\n        <th>Cell</th>\r\n        <th>Address</th>\r\n    </tr>\r\n    </thead>\r\n    <tbody>\r\n    <user [user]=\"user\"\r\n            [format]=\"displayMode\"\r\n            class={{displayMode}}\r\n            *ngFor=\"let user of searchedUsers\">\r\n    </user>\r\n    </tbody>\r\n</table>\r\n\r\n";
+module.exports = "<div class=\"pull-right displayControl\">\r\n    <span (click)=\"displayToTable()\" [style.color]=\"tableIconColor\" class=\"glyphicon glyphicon-list\"></span>\r\n    <span (click)=\"displayToCard()\" [style.color]=\"cardIconColor\" class=\"glyphicon glyphicon-th-large\"></span>\r\n</div>\r\n\r\n<div class=\"input-group input-group-lg input-users\">\r\n    <input class=\"form-control input-lg\"\r\n           [(ngModel)]=\"searchTerm\"\r\n           (keyup.enter)=\"filterChanged()\"\r\n           id=\"users-search\" type=\"text\"\r\n           placeholder=\"Search for users...\"/>\r\n\r\n    <span class=\"input-group-btn\">\r\n        <button (click)=\"filterChanged()\" class=\"btn btn-default\" type=\"button\">\r\n            <span class=\"glyphicon glyphicon-search\"></span>\r\n        </button>\r\n    </span>\r\n</div>\r\n<br/>\r\n<span *ngIf=\"!isLoading\">{{searchedUsers.length}} results from {{totalUsers}} users</span> \r\n<span *ngIf=\"isLoading\">Loading...</span>\r\n<br/>\r\n<table class=\"table\" *ngIf=\"users\">\r\n    <thead class={{displayMode}}>\r\n    <tr>\r\n        <th></th>\r\n        <th>Username</th>\r\n        <th>Name</th>\r\n        <th>Email</th>\r\n        <th>Cell</th>\r\n        <th>Address</th>\r\n    </tr>\r\n    </thead>\r\n    <tbody>\r\n    <user [user]=\"user\"\r\n          [format]=\"displayMode\"\r\n          class={{displayMode}}\r\n          *ngFor=\"let user of searchedUsers\">\r\n    </user>\r\n    </tbody>\r\n</table>\r\n\r\n";
 
 /***/ },
 /* 43 */
@@ -2644,7 +2644,7 @@ module.exports = "span.tableView {\n  display: table-cell;\n  text-align: center
 /* 49 */
 /***/ function(module, exports) {
 
-module.exports = ":host.tableView:nth-child(odd) {\n  background-color: white; }\n\n:host.tableView:nth-child(even) {\n  background-color: #f9f9f9; }\n\n:host.tableView {\n  display: table-row; }\n  :host.tableView span {\n    display: table-cell;\n    text-align: center;\n    font-size: 16px; }\n  :host.tableView img#lgUserPicture {\n    display: none; }\n\n:host.tableView:hover {\n  background-color: rgba(250, 235, 215, 0.3); }\n\nspan.tableView:hover {\n  background-color: antiquewhite; }\n\n:host.cardView {\n  width: 128px;\n  height: 178px;\n  background-color: black;\n  box-shadow: 0 0 15px #6f6f6f;\n  display: inline-block;\n  margin: 20px;\n  overflow: hidden;\n  border-radius: 5px;\n  position: relative; }\n  :host.cardView img#UserThumbnail {\n    display: none; }\n  :host.cardView #name {\n    background-color: #006e9a;\n    color: white;\n    width: 100%;\n    display: inline-block;\n    height: 50px;\n    position: absolute;\n    bottom: 0;\n    text-align: center;\n    font-size: 12px; }\n  :host.cardView #phoneNumber, :host.cardView #userName {\n    display: none; }\n\n:host.cardView:hover {\n  box-shadow: 0 0 50px #6f6f6f; }\n"
+module.exports = ":host.tableView:nth-child(odd) {\n  background-color: white; }\n\n:host.tableView:nth-child(even) {\n  background-color: #f9f9f9; }\n\n:host.tableView {\n  display: table-row; }\n  :host.tableView span {\n    display: table-cell;\n    text-align: center;\n    font-size: 16px; }\n  :host.tableView img#lgUserPicture {\n    display: none; }\n\n:host.tableView:hover {\n  background-color: rgba(250, 235, 215, 0.3); }\n\nspan.tableView:hover {\n  background-color: antiquewhite; }\n\n:host.cardView {\n  width: 128px;\n  height: 163px;\n  background-color: black;\n  box-shadow: 0 0 15px #6f6f6f;\n  display: inline-block;\n  margin: 20px;\n  overflow: hidden;\n  border-radius: 5px;\n  position: relative; }\n  :host.cardView img#UserThumbnail {\n    display: none; }\n  :host.cardView #name {\n    background-color: #006e9a;\n    color: white;\n    width: 100%;\n    display: inline-block;\n    height: 35px;\n    position: absolute;\n    bottom: 0;\n    text-align: center;\n    font-size: 12px; }\n  :host.cardView #phoneNumber, :host.cardView #userName {\n    display: none; }\n\n:host.cardView:hover {\n  box-shadow: 0 0 50px #6f6f6f; }\n"
 
 /***/ },
 /* 50 */

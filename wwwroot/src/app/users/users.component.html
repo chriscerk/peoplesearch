@@ -17,9 +17,9 @@
     </span>
 </div>
 <br/>
-<span *ngIf="!isLoading">{{searchedUsers.length}} results</span> 
+<span *ngIf="!isLoading">{{searchedUsers.length}} results from {{totalUsers}} users</span> 
 <span *ngIf="isLoading">Loading...</span>
-
+<br/>
 <table class="table" *ngIf="users">
     <thead class={{displayMode}}>
     <tr>
@@ -33,9 +33,9 @@
     </thead>
     <tbody>
     <user [user]="user"
-            [format]="displayMode"
-            class={{displayMode}}
-            *ngFor="let user of searchedUsers">
+          [format]="displayMode"
+          class={{displayMode}}
+          *ngFor="let user of searchedUsers">
     </user>
     </tbody>
 </table>
