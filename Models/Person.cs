@@ -12,6 +12,6 @@ namespace peoplesearch.Models
         public string LastName;
         public string UserName;
         public string PhoneNumber;
-        public string PicturePath;
+        public string Email;
     }
 }

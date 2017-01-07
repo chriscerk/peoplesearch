@@ -4,7 +4,7 @@ export interface IPerson {
     lastName: string;
     userName: string;
     phoneNumber: string;
-    picturePath: string;
+    email: string;
 }
 
 

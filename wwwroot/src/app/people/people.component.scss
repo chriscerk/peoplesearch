@@ -17,3 +17,16 @@ thead.cardView {
     left: 50px;
     box-shadow: 0 0 15px rgb(111, 111, 111);
 }
+
+#addPersonBox {
+    position: absolute;
+    z-index: 100;
+    width: 400px;
+    height: 550px;
+    bottom: 0px;
+    left: 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 15px rgb(111, 111, 111);
+    border-radius: 10px;
+}

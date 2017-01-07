@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b9384339216153a97e70"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "fa40c2ff0d815aece2ac"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotMainModule = true; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -799,6 +799,9 @@ var PeopleApiService = (function () {
             return response.json();
         });
     };
+    PeopleApiService.prototype.createPerson = function (p) {
+        return this._http.post('/api/people/add/', p);
+    };
     PeopleApiService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [(typeof (_a = typeof http_1.Http !== 'undefined' && http_1.Http) === 'function' && _a) || Object])
@@ -1307,7 +1310,7 @@ if (module) {
   };
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, "?path=http%3A%2F%2Flocalhost%3A52979%2F__webpack_hmr", __webpack_require__(54)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, "?path=http%3A%2F%2Flocalhost%3A64814%2F__webpack_hmr", __webpack_require__(54)(module)))
 
 /***/ },
 /* 17 */
@@ -1583,6 +1586,14 @@ var PeopleComponent = (function () {
         this.searchedPeople = [];
         this.users = [];
         this.searchedUsers = [];
+        this.addPerson = {
+            id: '',
+            firstName: '',
+            lastName: '',
+            userName: '',
+            phoneNumber: '',
+            email: ''
+        };
     }
     PeopleComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1590,19 +1601,36 @@ var PeopleComponent = (function () {
             .subscribe(function (people) {
             _this.people = _this.searchedPeople = people;
         });
-        this.displayMode = "tableView";
-        this.tableIconColor = "orange";
-        this.cardIconColor = "black";
+        this.addBoxOpened = false;
+        this.displayToTable();
     };
     PeopleComponent.prototype.displayToTable = function () {
         this.displayMode = "tableView";
         this.tableIconColor = "orange";
         this.cardIconColor = "black";
     };
-    PeopleComponent.prototype.displayToCard = function () {
-        this.displayMode = "cardView";
-        this.tableIconColor = "black";
-        this.cardIconColor = "orange";
+    PeopleComponent.prototype.displayAddBox = function () {
+        this.addBoxOpened = true;
+    };
+    PeopleComponent.prototype.addThisPerson = function () {
+        this.peopleApiService.createPerson(this.addPerson);
+        this.addBoxOpened = false;
+        this.resetAddPerson();
+    };
+    PeopleComponent.prototype.cancelAddPerson = function () {
+        this.addBoxOpened = false;
+        this.resetAddPerson();
+    };
+    PeopleComponent.prototype.resetAddPerson = function () {
+        this.addPerson =
+            {
+                id: '',
+                firstName: '',
+                lastName: '',
+                userName: '',
+                phoneNumber: '',
+                email: ''
+            };
     };
     PeopleComponent.prototype.filterChanged = function () {
         var _this = this;
@@ -1796,13 +1824,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
+var Rx_1 = __webpack_require__(63);
 var randomUser_service_1 = __webpack_require__(2);
 var UsersComponent = (function () {
-    function UsersComponent(randomUserApiService) {
+    function UsersComponent(randomUserApiService, zone) {
         this.randomUserApiService = randomUserApiService;
+        this.zone = zone;
         this.users = [];
         this.searchedUsers = [];
         this.totalUsers = 5000;
+        this.ticks = 0;
+        this.sub = new Rx_1.Subscription;
     }
     UsersComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1823,8 +1855,26 @@ var UsersComponent = (function () {
         this.cardIconColor = 'orange';
     };
     UsersComponent.prototype.filterChanged = function () {
-        var _this = this;
         this.isLoading = true;
+        this.sub.unsubscribe();
+        this.ticks = 0;
+        this.filterResults();
+    };
+    UsersComponent.prototype.monitorSearchTime = function () {
+        var _this = this;
+        this.ticks = 0;
+        this.timer = Rx_1.Observable.timer(2000, 1000);
+        this.sub = this.timer.subscribe(function (t) { return _this.ticks = t; });
+        this.zone.run(function () {
+            console.log('enabled time travel');
+        });
+    };
+    UsersComponent.prototype.emulateSlowSearch = function () {
+        this.isLoading = true;
+        this.monitorSearchTime();
+    };
+    UsersComponent.prototype.filterResults = function () {
+        var _this = this;
         if (this.searchTerm && this.users) {
             var props_1 = ['first', 'last'];
             var filtered = this.users.filter(function (u) {
@@ -1840,11 +1890,12 @@ var UsersComponent = (function () {
                 return match;
             });
             this.searchedUsers = filtered;
+            this.isLoading = false;
         }
         else {
             this.searchedUsers = this.users;
+            this.isLoading = false;
         }
-        this.isLoading = false;
     };
     UsersComponent = __decorate([
         core_1.Component({
@@ -1852,10 +1903,10 @@ var UsersComponent = (function () {
             template: __webpack_require__(42),
             styles: [__webpack_require__(50)]
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof randomUser_service_1.RandomUserApiService !== 'undefined' && randomUser_service_1.RandomUserApiService) === 'function' && _a) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof randomUser_service_1.RandomUserApiService !== 'undefined' && randomUser_service_1.RandomUserApiService) === 'function' && _a) || Object, (typeof (_b = typeof core_1.NgZone !== 'undefined' && core_1.NgZone) === 'function' && _b) || Object])
     ], UsersComponent);
     return UsersComponent;
-    var _a;
+    var _a, _b;
 }());
 exports.UsersComponent = UsersComponent;
 
@@ -2408,13 +2459,13 @@ module.exports = "<div class=\"jumbotron\">\r\n    <div class=\"container\">\r\n
 /* 39 */
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"pull-right displayControl\">\r\n    <span (click)=\"displayToTable()\" [style.color]=\"tableIconColor\" class=\"glyphicon glyphicon-list\"></span>\r\n</div>\r\n\r\n<div class=\"input-group input-group-lg input-people\">\r\n    <input class=\"form-control input-lg\"\r\n           [(ngModel)]=\"searchTerm\"\r\n           (keyup)=\"filterChanged()\"\r\n           (keyup.enter)=\"filterChanged()\"\r\n           id=\"people-search\" type=\"text\"\r\n           placeholder=\"Search for people...\"/>\r\n\r\n    <span class=\"input-group-btn\">\r\n        <button (click)=\"filterChanged()\" class=\"btn btn-default\" type=\"button\">\r\n            <span class=\"glyphicon glyphicon-search\"></span>\r\n        </button>\r\n    </span>\r\n</div>\r\n<br/>\r\n<p>{{searchedPeople.length}} results</p>\r\n<table class=\"table\" *ngIf=\"people\">\r\n    <thead class={{displayMode}}>\r\n        <tr>\r\n            <th>First Name</th>\r\n            <th>Last Name</th>\r\n            <th>User Name </th>\r\n            <th>Phone Number</th>\r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n    <person [person]=\"person\"\r\n            [format]=\"displayMode\"\r\n            class={{displayMode}}\r\n            *ngFor=\"let person of searchedPeople\">\r\n    </person>\r\n    </tbody>\r\n</table>\r\n\r\n<button class=\"btn btn-success btn-lg addPerson\">\r\n    <span class=\"glyphicon glyphicon-plus\"></span> Add Person\r\n</button>\r\n\r\n";
+module.exports = "<div class=\"pull-right displayControl\">\r\n    <span (click)=\"displayToTable()\" [style.color]=\"tableIconColor\" class=\"glyphicon glyphicon-list\"></span>\r\n</div>\r\n\r\n<div class=\"input-group input-group-lg input-people\">\r\n    <input class=\"form-control input-lg\"\r\n           [(ngModel)]=\"searchTerm\"\r\n           (keyup)=\"filterChanged()\"\r\n           (keyup.enter)=\"filterChanged()\"\r\n           id=\"people-search\" type=\"text\"\r\n           placeholder=\"Search for people...\"/>\r\n\r\n    <span class=\"input-group-btn\">\r\n        <button (click)=\"filterChanged()\" class=\"btn btn-default\" type=\"button\">\r\n            <span class=\"glyphicon glyphicon-search\"></span>\r\n        </button>\r\n    </span>\r\n</div>\r\n<br/>\r\n<p>{{searchedPeople.length}} results</p>\r\n<table class=\"table\" *ngIf=\"people\">\r\n    <thead class={{displayMode}}>\r\n        <tr>\r\n            <th>First Name</th>\r\n            <th>Last Name</th>\r\n            <th>User Name </th>\r\n            <th>Phone Number</th>\r\n            <th>Email</th>\r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n    <person [person]=\"person\"\r\n            [format]=\"displayMode\"\r\n            class={{displayMode}}\r\n            *ngFor=\"let person of searchedPeople\">\r\n    </person>\r\n    </tbody>\r\n</table>\r\n\r\n<button (click)=\"displayAddBox()\" class=\"btn btn-success btn-lg addPerson\">\r\n    <span class=\"glyphicon glyphicon-plus\"></span> Add Person\r\n</button>\r\n\r\n<div *ngIf=\"addBoxOpened\" class=\"input-group-lg\" id=\"addPersonBox\">\r\n    <label for=\"email\">Email:</label><br />\r\n    <input [(ngModel)]=\"addPerson.email\" type=\"text\" class=\"input-lg form-control\" id=\"email\" required/>\r\n    <br/>\r\n    <label for=\"firstName\">First Name:</label><br />\r\n    <input [(ngModel)]=\"addPerson.firstName\" type=\"text\" class=\"input-lg form-control\" id=\"firstName\" required/>\r\n    <br />\r\n    <label for=\"lastName\">Last Name:</label><br />\r\n    <input [(ngModel)]=\"addPerson.lastName\" type=\"text\" class=\"input-lg form-control\" id=\"lastName\" required/>\r\n    <br />\r\n    <label for=\"userName\">UserName:</label><br />\r\n    <input [(ngModel)]=\"addPerson.userName\" type=\"text\" class=\"input-lg form-control\" id=\"userName\" required/>\r\n    <br />\r\n    <label for=\"phoneNumber\">Phone Number:</label><br />\r\n    <input [(ngModel)]=\"addPerson.phoneNumber\" type=\"text\" class=\"input-lg form-control\" id=\"phoneNumber\" required/>\r\n    <br />\r\n    <button type=\"submit\" (click)=\"addThisPerson()\" class=\"btn btn-success\">\r\n        <span class=\"glyphicon glyphicon-plus\"></span> Add This Person\r\n    </button>\r\n    <button (click)=\"cancelAddPerson()\" class=\"btn btn-danger\">\r\n        <span class=\"glyphicon glyphicon-ban-circle\"></span> Cancel\r\n    </button>\r\n</div>\r\n\r\n";
 
 /***/ },
 /* 40 */
 /***/ function(module, exports) {
 
-module.exports = "<span class={{format}} id=\"firstName\">{{person.firstName}}</span>\r\n<span class={{format}} id=\"lastName\">{{person.lastName}}</span>\r\n<span class={{format}} id=\"userName\">{{person.userName}}</span>\r\n<span class={{format}} id=\"phoneNumber\">{{person.phoneNumber}}</span>\r\n";
+module.exports = "<span class={{format}} id=\"firstName\">{{person.firstName}}</span>\r\n<span class={{format}} id=\"lastName\">{{person.lastName}}</span>\r\n<span class={{format}} id=\"userName\">{{person.userName}}</span>\r\n<span class={{format}} id=\"phoneNumber\">{{person.phoneNumber}}</span>\r\n<span class={{format}} id=\"email\">{{person.email}}</span>\r\n";
 
 /***/ },
 /* 41 */
@@ -2426,7 +2477,7 @@ module.exports = "<img class={{format}} id=\"lgUserPicture\" src=\"{{user.pictur
 /* 42 */
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"pull-right displayControl\">\r\n    <span (click)=\"displayToTable()\" [style.color]=\"tableIconColor\" class=\"glyphicon glyphicon-list\"></span>\r\n    <span (click)=\"displayToCard()\" [style.color]=\"cardIconColor\" class=\"glyphicon glyphicon-th-large\"></span>\r\n</div>\r\n\r\n<div class=\"input-group input-group-lg input-users\">\r\n    <input class=\"form-control input-lg\"\r\n           [(ngModel)]=\"searchTerm\"\r\n           (keyup.enter)=\"filterChanged()\"\r\n           id=\"users-search\" type=\"text\"\r\n           placeholder=\"Search for users...\"/>\r\n\r\n    <span class=\"input-group-btn\">\r\n        <button (click)=\"filterChanged()\" class=\"btn btn-default\" type=\"button\">\r\n            <span class=\"glyphicon glyphicon-search\"></span>\r\n        </button>\r\n    </span>\r\n</div>\r\n<br/>\r\n<span *ngIf=\"!isLoading\">{{searchedUsers.length}} results from {{totalUsers}} users</span> \r\n<span *ngIf=\"isLoading\">Loading...</span>\r\n<br/>\r\n<table class=\"table\" *ngIf=\"users\">\r\n    <thead class={{displayMode}}>\r\n    <tr>\r\n        <th></th>\r\n        <th>Username</th>\r\n        <th>Name</th>\r\n        <th>Email</th>\r\n        <th>Cell</th>\r\n        <th>Address</th>\r\n    </tr>\r\n    </thead>\r\n    <tbody>\r\n    <user [user]=\"user\"\r\n          [format]=\"displayMode\"\r\n          class={{displayMode}}\r\n          *ngFor=\"let user of searchedUsers\">\r\n    </user>\r\n    </tbody>\r\n</table>\r\n\r\n";
+module.exports = "<div class=\"pull-right displayControl\">\r\n    <span (click)=\"displayToTable()\" [style.color]=\"tableIconColor\" class=\"glyphicon glyphicon-list\"></span>\r\n    <span (click)=\"displayToCard()\" [style.color]=\"cardIconColor\" class=\"glyphicon glyphicon-th-large\"></span>\r\n</div>\r\n\r\n<div class=\"input-group input-group-lg input-users\">\r\n    <input class=\"form-control input-lg\"\r\n           [(ngModel)]=\"searchTerm\"\r\n           (keyup.enter)=\"filterChanged()\"\r\n           id=\"users-search\" type=\"text\"\r\n           placeholder=\"Search for users...\"/>\r\n\r\n    <span class=\"input-group-btn\">\r\n        <button (click)=\"filterChanged()\" class=\"btn btn-default\" type=\"button\">\r\n            <span class=\"glyphicon glyphicon-search\"></span>\r\n        </button>\r\n    </span>\r\n</div>\r\n<br/>\r\n<span *ngIf=\"!isLoading\">{{searchedUsers.length}} results from {{totalUsers}} users</span> <br/>\r\n<span *ngIf=\"isLoading\"> Loading...</span> <br/>\r\n<div class=\"alert alert-danger\" *ngIf=\"ticks > 5\"> Search taking longer than expected, try searching something more specific.</div> <br />\r\n<br/>\r\n<table class=\"table\" *ngIf=\"users\">\r\n    <thead class={{displayMode}}>\r\n    <tr>\r\n        <th></th>\r\n        <th>Username</th>\r\n        <th>Name</th>\r\n        <th>Email</th>\r\n        <th>Cell</th>\r\n        <th>Address</th>\r\n    </tr>\r\n    </thead>\r\n    <tbody>\r\n    <user [user]=\"user\"\r\n          [format]=\"displayMode\"\r\n          class={{displayMode}}\r\n          *ngFor=\"let user of searchedUsers\">\r\n    </user>\r\n    </tbody>\r\n</table>\r\n\r\n<button (click)=\"emulateSlowSearch()\" class=\"btn btn-success btn-lg slowSearch\">\r\n    <span class=\"glyphicon glyphicon-refresh\"></span> Slow Search\r\n</button>\r\n\r\n";
 
 /***/ },
 /* 43 */
@@ -2632,7 +2683,7 @@ module.exports = ""
 /* 47 */
 /***/ function(module, exports) {
 
-module.exports = ".input-people {\n  float: none;\n  width: 400px; }\n\nthead.cardView {\n  display: none; }\n\n.displayControl {\n  font-size: 40px; }\n\n.addPerson {\n  position: absolute;\n  bottom: 30px;\n  left: 50px;\n  box-shadow: 0 0 15px #6f6f6f; }\n"
+module.exports = ".input-people {\n  float: none;\n  width: 400px; }\n\nthead.cardView {\n  display: none; }\n\n.displayControl {\n  font-size: 40px; }\n\n.addPerson {\n  position: absolute;\n  bottom: 30px;\n  left: 50px;\n  box-shadow: 0 0 15px #6f6f6f; }\n\n#addPersonBox {\n  position: absolute;\n  z-index: 100;\n  width: 400px;\n  height: 550px;\n  bottom: 0px;\n  left: 0;\n  padding: 20px;\n  background-color: #f9f9f9;\n  box-shadow: 0 0 15px #6f6f6f;\n  border-radius: 10px; }\n"
 
 /***/ },
 /* 48 */
@@ -2650,7 +2701,7 @@ module.exports = ":host.tableView:nth-child(odd) {\n  background-color: white; }
 /* 50 */
 /***/ function(module, exports) {
 
-module.exports = ".input-users {\n  float: none;\n  width: 400px; }\n\nthead.cardView {\n  display: none; }\n\n.displayControl {\n  font-size: 40px; }\n"
+module.exports = ".input-users {\n  float: none;\n  width: 400px; }\n\nthead.cardView {\n  display: none; }\n\n.displayControl {\n  font-size: 40px; }\n\n.slowSearch {\n  position: absolute;\n  top: 70px;\n  left: 10px;\n  box-shadow: 0 0 15px #6f6f6f; }\n"
 
 /***/ },
 /* 51 */
@@ -2923,6 +2974,15 @@ module.exports = (__webpack_require__(1))(920);
 __webpack_require__(16);
 module.exports = __webpack_require__(15);
 
+
+/***/ },
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(1))(943);
 
 /***/ }
 /******/ ]);

@@ -16,10 +16,22 @@ export class PeopleComponent implements OnInit {
     searchedPeople: IPerson[] = [];
     users: IUser[] = [];
     searchedUsers: IUser[] = [];
+
+    addPerson: IPerson =
+    {
+        id: '',
+        firstName: '',
+        lastName: '',
+        userName: '',
+        phoneNumber: '',
+        email: ''
+    };
+
     searchTerm: string;
     displayMode: string;
     tableIconColor: string;
     cardIconColor: string;
+    addBoxOpened: boolean;
 
     constructor(private peopleApiService: PeopleApiService, private randomUserApiService: RandomUserApiService) {}
 
@@ -29,9 +41,8 @@ export class PeopleComponent implements OnInit {
                 this.people = this.searchedPeople = people;
             });
 
-        this.displayMode = "tableView";
-        this.tableIconColor = "orange";
-        this.cardIconColor = "black";
+        this.addBoxOpened = false;
+        this.displayToTable();
     }
 
     displayToTable() {
@@ -40,10 +51,31 @@ export class PeopleComponent implements OnInit {
         this.cardIconColor = "black";
     }
 
-    displayToCard() {
-        this.displayMode = "cardView";
-        this.tableIconColor = "black";
-        this.cardIconColor = "orange";
+    displayAddBox() {
+        this.addBoxOpened = true;
+    }
+
+    addThisPerson() {
+        this.peopleApiService.createPerson(this.addPerson);
+        this.addBoxOpened = false;
+        this.resetAddPerson();
+    }
+
+    cancelAddPerson() {
+        this.addBoxOpened = false;
+        this.resetAddPerson();
+    }
+
+    resetAddPerson() {
+        this.addPerson =
+            {
+                id: '',
+                firstName: '',
+                lastName: '',
+                userName: '',
+                phoneNumber: '',
+                email: ''
+            };
     }
 
     filterChanged() {

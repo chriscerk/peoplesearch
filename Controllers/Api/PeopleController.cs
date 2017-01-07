@@ -1,3 +1,4 @@
+using System.Net.NetworkInformation;
 using Microsoft.AspNetCore.Mvc;
 using peoplesearch.Models;
 using peoplesearch.Models.Persistance;
@@ -32,6 +33,14 @@ namespace peoplesearch.Controllers.Api
                 return NotFound();
             }
             return new ObjectResult(item);
+        }
+
+        [HttpPost]
+        [Route("add")]
+        public IActionResult AddPerson([FromBody] Person p)
+        {
+            People.Add(p);
+            return Ok();
         }
     }
 }

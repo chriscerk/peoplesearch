@@ -1,6 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { IPerson, IUser } from '../../shared/interfaces';
+import { IPerson } from '../../shared/interfaces';
 
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
@@ -27,5 +27,9 @@ export class PeopleApiService {
             .map(response => {
                 return response.json() as IPerson;
             });
+    }
+
+    createPerson(p: IPerson) {
+        return this._http.post('/api/people/add/', p);
     }
 }
