@@ -2,6 +2,9 @@
 
 ASP.NET MVC Application for 2017 Health Catalyst Interview Process
 
+![table view](https://raw.githubusercontent.com/chriscerk/peoplesearch/master/tableView.PNG)
+![card view](https://raw.githubusercontent.com/chriscerk/peoplesearch/master/cardView.PNG)
+
 ## Requirements Met
 
 ### Business Requirements
